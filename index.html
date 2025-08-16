@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bridge4Meal — Connecting Surplus Food to Hungry Stomachs</title>
+  <meta name="description" content="Bridge4Meal is a social impact platform that connects surplus food from restaurants and households to underserved communities using technology and logistics." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css" />
+
+  <link rel="icon" href="assets/logo.jpg">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home">
+        <img src="assets/logo.jpg" alt="Bridge4Meal Logo" class="logo">
+        Bridge<span>4</span>Meal
+      </a>
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#impact">Impact</a>
+        <a href="#partners">Partners</a>
+        <a href="#contact" class="btn small">Contact</a>
+      </nav>
+      <button class="hamburger" aria-label="Menu" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-media">
+        <img src="assets/hero_banner.jpg" alt="Food distribution teamwork" />
+      </div>
+      <div class="container hero-inner">
+        <h1><span class="accent">Connecting</span> surplus food to hungry stomachs</h1>
+        <p class="lead">A social innovation using FoodTech, logistics, and data to reduce hunger and food waste—starting local, scaling nationwide.</p>
+        <div class="cta">
+          <a href="#signup" class="btn primary">Become a Partner</a>
+          <a href="#volunteer" class="btn ghost">Volunteer</a>
+        </div>
+        <div class="badges">
+          <span>Track: Social</span>
+          <span>Sector: FoodTech • IT • Logistics</span>
+        </div>
+      </div>
+      <div class="hero-gradient"></div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container grid-2">
+        <div>
+          <h2>About Bridge4Meal</h2>
+          <p>We bridge two problems with one platform: unemployment and hunger. Our marketplace connects households and businesses with verified workers while our Meal-Aid program channels a portion of revenue to fund daily nutritious meals for those who need them most.</p>
+          <ul class="tick">
+            <li>Verified worker profiles & fair jobs</li>
+            <li>Real-time matching & multilingual UI</li>
+            <li>Meal-Aid sponsorships integrated into every transaction</li>
+          </ul>
+        </div>
+        <div class="card media">
+          <img src="assets/team_spirit.jpg" alt="Volunteers distributing food">
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section alt">
+      <div class="container">
+        <h2>How it works</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <h3>Identify need</h3>
+            <p>Use data and community reports to map hunger hot-spots and job demand.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <h3>Collect surplus</h3>
+            <p>Onboard restaurants, hotels, and households; ensure safety & quality checks.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <h3>Efficient logistics</h3>
+            <p>Smart routing for pickups & drop-offs, powered by volunteer and paid fleet.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <h3>Impact & jobs</h3>
+            <p>Every order funds Meal-Aid and opens steady work for verified workers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="container">
+        <h2>Platform features</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>Verified Workers</h3>
+            <p>Identity checks, skill tags, ratings—trust built in.</p>
+          </div>
+          <div class="card">
+            <h3>Smart Matching</h3>
+            <p>Assigns jobs based on skills, proximity, and availability.</p>
+          </div>
+          <div class="card">
+            <h3>Meal-Aid Wallet</h3>
+            <p>Transparent tracker for meals funded by every transaction.</p>
+          </div>
+          <div class="card">
+            <h3>Impact Dashboard</h3>
+            <p>Live counters: meals served, households helped, workers active.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="impact" class="section alt">
+      <div class="container grid-3">
+        <div class="metric">
+          <div class="num" data-target="5000">0</div>
+          <div class="label">Workers onboarded</div>
+        </div>
+        <div class="metric">
+          <div class="num" data-target="20000">0</div>
+          <div class="label">Households served</div>
+        </div>
+        <div class="metric">
+          <div class="num" data-target="50000">0</div>
+          <div class="label">Meals served</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="partners" class="section">
+      <div class="container grid-2">
+        <div>
+          <h2>Become a partner</h2>
+          <p>Hotels, restaurants, NGOs, and housing societies can partner with us to redistribute surplus food responsibly.</p>
+          <ul class="tick">
+            <li>Food safety checklist</li>
+            <li>Pickup scheduling & live tracking</li>
+            <li>Impact reports for CSR</li>
+          </ul>
+        </div>
+        <form id="partnerForm" class="card form">
+          <h3>Partner signup</h3>
+          <label>Organization name
+            <input type="text" name="org" required>
+          </label>
+          <label>Contact email
+            <input type="email" name="email" required>
+          </label>
+          <label>City
+            <input type="text" name="city" required>
+          </label>
+          <label>Type
+            <select name="type" required>
+              <option value="">Select</option>
+              <option>Restaurant/Hotel</option>
+              <option>NGO</option>
+              <option>Housing Society</option>
+              <option>Individual Donor</option>
+            </select>
+          </label>
+          <button class="btn primary" type="submit">Submit</button>
+          <p class="form-note" id="partnerMsg"></p>
+        </form>
+      </div>
+    </section>
+
+    <section id="signup" class="section alt">
+      <div class="container grid-2">
+        <form id="workerForm" class="card form">
+          <h3>Worker onboarding</h3>
+          <label>Full name
+            <input type="text" name="name" required>
+          </label>
+          <label>Phone
+            <input type="tel" name="phone" required>
+          </label>
+          <label>Primary skill
+            <input type="text" name="skill" placeholder="Cooking, Cleaning, Electrician…" required>
+          </label>
+          <label>City
+            <input type="text" name="city" required>
+          </label>
+          <button class="btn primary" type="submit">Apply</button>
+          <p class="form-note" id="workerMsg"></p>
+        </form>
+        <div>
+          <h2>Why join as a worker?</h2>
+          <p>Access steady work, verified employers, and fair pay. Earn loyalty benefits and help fund meals for the community with every completed job.</p>
+          <div class="card media">
+            <img src="assets/skilled_labour.jpg" alt="Skilled worker on duty">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="volunteer" class="section">
+      <div class="container grid-2">
+        <div>
+          <h2>Volunteer with us</h2>
+          <p>Help us map surplus sources, run collection drives, and manage distributions. Students and community groups welcome!</p>
+          <a class="btn ghost" href="#contact">Talk to us</a>
+        </div>
+        <div class="card media">
+          <img src="assets/volunteer_working.jpg" alt="Volunteers sorting food">
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="section alt">
+      <div class="container">
+        <h2>Our Team and Community</h2>
+        <div class="image-gallery" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
+          <img src="assets/chef_cooking.jpg" alt="Chef cooking">
+          <img src="assets/child_receiving_food.jpg" alt="Child receiving food">
+          <img src="assets/construction_worker.jpg" alt="Construction worker">
+          <img src="assets/donations.jpg" alt="Donations">
+          <img src="assets/electrician_fixing.jpg" alt="Electrician fixing">
+          <img src="assets/gardener.jpg" alt="Gardener">
+          <img src="assets/mason_working.jpg" alt="Mason working">
+          <img src="assets/skilled_labour.jpg" alt="Skilled labourer">
+          <img src="assets/team_spirit.jpg" alt="Team spirit">
+          <img src="assets/volunteer_working.jpg" alt="Volunteer working">
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <div class="container">
+        <h2>FAQ</h2>
+        <details><summary>How do you ensure food safety?</summary><p>We follow FSSAI guidelines, temperature controls, and limit holding time. Donors accept a safety checklist before pickup.</p></details>
+        <details><summary>Is there a fee?</summary><p>No fee for donors. Workers may opt for a low subscription that funds verification and operations; every transaction contributes to Meal-Aid.</p></details>
+        <details><summary>Where do you operate?</summary><p>Starting in Meerut with phased expansion to nearby cities based on partner demand and volunteer density.</p></details>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container grid-2">
+        <div>
+          <h2>Contact</h2>
+          <p>Email: <a href="mailto:bridge4meal@gmail.com">bridge4meal@gmail.com</a><br/>
+          Phone: +91 9103595615</p>
+          <p>Follow our journey and impact updates.</p>
+        </div>
+        <form id="contactForm" class="card form">
+          <h3>Quick message</h3>
+          <label>Your name
+            <input type="text" name="name" required>
+          </label>
+          <label>Your email
+            <input type="email" name="email" required>
+          </label>
+          <label>Message
+            <textarea name="message" rows="4" required></textarea>
+          </label>
+          <button class="btn primary" type="submit">Send</button>
+          <p class="form-note" id="contactMsg"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="brand">
+        <img src="assets/logo.jpg" alt="Bridge4Meal Logo" class="logo">
+        Bridge<span>4</span>Meal
+      </div>
+      <div class="small">© <span id="year"></span> Bridge4Meal. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
