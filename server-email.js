@@ -1,24 +1,23 @@
-// server-email.js
+require('dotenv').config();
 const nodemailer = require('nodemailer');
 
 // Gmail transporter
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'bridge4meal@gmail.com',        // Yahan apna Gmail dalna
-    pass: 'yvzp zyoc jlgd lbjv'          // Yahan Gmail App Password dalna
+    user: process.env.EMAIL_USER, // .env me store karo
+    pass: process.env.EMAIL_PASS  // .env me store karo (App Password)
   }
 });
 
 // Function to send email
 async function sendMail(to, subject, text) {
   return transporter.sendMail({
-    from: 'bridge4meal@gmail.com',
+    from: process.env.EMAIL_USER,
     to,
     subject,
     text
   });
 }
 
-// Correctly export karo
 module.exports = { sendMail };

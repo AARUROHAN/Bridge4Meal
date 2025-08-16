@@ -1,52 +1,37 @@
+require('dotenv').config(); // Load .env variables
 const express = require('express');
 const cors = require('cors');
-const { sendMail } = require('./server-email');  // Correct import
+const { sendMail } = require('./server-email'); // Email handler
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// In-memory store
+// In-memory store (replace with DB in future)
 const db = { partners: [], workers: [], messages: [] };
 
-// Example: Partner form submit
-app.post('/api/partners', async (req, res) => {
+// Helper function to handle submissions
+const handleSubmit = (type) => async (req, res) => {
   const item = { id: Date.now(), ...req.body };
-  db.partners.push(item);
+  db[type].push(item);
 
   try {
-    await sendMail('bridge4meal@gmail.com', 'New Partner Signup', JSON.stringify(item));
+    await sendMail(process.env.ADMIN_EMAIL, `New ${type.slice(0, -1)} Signup`, JSON.stringify(item, null, 2));
     res.json({ success: true, data: item });
   } catch(err) {
-    res.status(500).send('Email failed: ' + err.message);
+    console.error(err);
+    res.status(500).json({ success: false, message: 'Email failed', error: err.message });
   }
-});
+};
 
-// Example: Worker form submit
-app.post('/api/workers', async (req, res) => {
-  const item = { id: Date.now(), ...req.body };
-  db.workers.push(item);
+// Routes
+app.post('/api/partners', handleSubmit('partners'));
+app.post('/api/workers', handleSubmit('workers'));
+app.post('/api/messages', handleSubmit('messages'));
 
-  try {
-    await sendMail('bridge4meal@gmail.com', 'New Worker Signup', JSON.stringify(item));
-    res.json({ success: true, data: item });
-  } catch(err) {
-    res.status(500).send('Email failed: ' + err.message);
-  }
-});
+// Root route
+app.get('/', (req, res) => res.send('Bridge4Meal API is running.'));
 
-// Example: Message form submit
-app.post('/api/messages', async (req, res) => {
-  const item = { id: Date.now(), ...req.body };
-  db.messages.push(item);
-
-  try {
-    await sendMail('bridge4meal@gmail.com', 'New Message', JSON.stringify(item));
-    res.json({ success: true, data: item });
-  } catch(err) {
-    res.status(500).send('Email failed: ' + err.message);
-  }
-});
-
+// Start server
 const PORT = process.env.PORT || 8800;
-app.listen(PORT, () => console.log('Bridge4Meal API running on http://localhost:' + PORT));
+app.listen(PORT, () => console.log(`Bridge4Meal API running on http://localhost:${PORT}`));
