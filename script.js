@@ -44,9 +44,17 @@ const onScroll = () => {
 window.addEventListener('scroll', onScroll);
 onScroll();
 
-// Forms -> Example API calls
-const API_BASE = 'http://localhost:8800/api'; // change to your backend URL
+// ✅ Backend API URL (local + render)
+const IS_LOCAL =
+  location.hostname === "localhost" ||
+  location.hostname === "127.0.0.1" ||
+  location.protocol === "file:";  // <-- agar direct file:// se open kare to bhi local API chalega
 
+const API_BASE = IS_LOCAL
+  ? "http://localhost:8800/api"
+  : "https://bridge4meal.onrender.com/api"; // Render ka backend URL
+
+// Helper function to POST JSON
 async function postJSON(url, data){
   const res = await fetch(url, {
     method: 'POST',
@@ -57,6 +65,7 @@ async function postJSON(url, data){
   return res.json();
 }
 
+// Partner form
 document.getElementById('partnerForm')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const fd = new FormData(e.target);
@@ -72,6 +81,7 @@ document.getElementById('partnerForm')?.addEventListener('submit', async (e) => 
   }
 });
 
+// Worker form
 document.getElementById('workerForm')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const fd = new FormData(e.target);
@@ -87,6 +97,7 @@ document.getElementById('workerForm')?.addEventListener('submit', async (e) => {
   }
 });
 
+// Contact form
 document.getElementById('contactForm')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const fd = new FormData(e.target);
@@ -102,4 +113,5 @@ document.getElementById('contactForm')?.addEventListener('submit', async (e) => 
   }
 });
 
+// Footer year
 document.getElementById('year').textContent = new Date().getFullYear();
