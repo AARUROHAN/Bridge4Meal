@@ -1,3 +1,7 @@
+// =======================
+// script.js
+// =======================
+
 // Smooth scroll + mobile nav
 const hamburger = document.querySelector('.hamburger');
 const nav = document.querySelector('.nav');
@@ -44,15 +48,16 @@ const onScroll = () => {
 window.addEventListener('scroll', onScroll);
 onScroll();
 
-// ✅ Backend API URL (local + render)
+// =======================
+// Backend API URL
+// =======================
 const IS_LOCAL =
   location.hostname === "localhost" ||
   location.hostname === "127.0.0.1" ||
-  location.protocol === "file:";  // <-- agar direct file:// se open kare to bhi local API chalega
-
+  location.protocol === "file:";
 const API_BASE = IS_LOCAL
   ? "http://localhost:8800/api"
-  : "https://bridge4meal.onrender.com/api"; // Render ka backend URL
+  : "https://bridge4meal.onrender.com/api";
 
 // Helper function to POST JSON
 async function postJSON(url, data){
@@ -65,53 +70,39 @@ async function postJSON(url, data){
   return res.json();
 }
 
-// Partner form
-document.getElementById('partnerForm')?.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const fd = new FormData(e.target);
-  const data = Object.fromEntries(fd.entries());
-  const msg = document.getElementById('partnerMsg');
-  msg.textContent = 'Submitting…';
-  try{
-    await postJSON(API_BASE + '/partners', data);
-    msg.textContent = 'Thanks! We will contact you shortly.';
-    e.target.reset();
-  }catch(err){
-    msg.textContent = 'Submission failed: ' + err.message;
-  }
-});
+// =======================
+// Form submission handler (scroll-safe)
+// =======================
+function handleFormSubmit(formId, msgId, apiEndpoint, successMsg) {
+  document.getElementById(formId)?.addEventListener('submit', async (e) => {
+    e.preventDefault(); // prevent page reload
+    const fd = new FormData(e.target);
+    const data = Object.fromEntries(fd.entries());
+    const msg = document.getElementById(msgId);
+    msg.textContent = 'Submitting…';
 
-// Worker form
-document.getElementById('workerForm')?.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const fd = new FormData(e.target);
-  const data = Object.fromEntries(fd.entries());
-  const msg = document.getElementById('workerMsg');
-  msg.textContent = 'Submitting…';
-  try{
-    await postJSON(API_BASE + '/workers', data);
-    msg.textContent = 'Application received!';
-    e.target.reset();
-  }catch(err){
-    msg.textContent = 'Submission failed: ' + err.message;
-  }
-});
+    try {
+      await postJSON(API_BASE + apiEndpoint, data);
+      msg.textContent = successMsg;
+      e.target.reset();
 
-// Contact form
-document.getElementById('contactForm')?.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const fd = new FormData(e.target);
-  const data = Object.fromEntries(fd.entries());
-  const msg = document.getElementById('contactMsg');
-  msg.textContent = 'Sending…';
-  try{
-    await postJSON(API_BASE + '/messages', data);
-    msg.textContent = 'Message sent. We will respond soon.';
-    e.target.reset();
-  }catch(err){
-    msg.textContent = 'Failed: ' + err.message;
-  }
-});
+      // Smooth scroll to message div without jumping to top
+      msg.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    } catch(err) {
+      msg.textContent = 'Submission failed: ' + err.message;
+    }
+  });
+}
+
+// Contact Form
+handleFormSubmit('contactForm', 'contactMsg', '/messages', 'Message sent. We will respond soon.');
+
+// Worker Form
+handleFormSubmit('workerForm', 'workerMsg', '/workers', 'Application received!');
+
+// Partner Form
+handleFormSubmit('partnerForm', 'partnerMsg', '/partners', 'Thanks! We will contact you shortly.');
 
 // Footer year
 document.getElementById('year').textContent = new Date().getFullYear();
